@@ -1,5 +1,4 @@
 # git ignore
 proyecto1/secret.json
-proyecto1/applications/departamento/migrations
-proyecto1/applications/home/migrations
-proyecto1/applications/persona/migrations
+proyecto1/applications/*/migrations/*
+!proyecto1/applications/*/migrations/__init__.py
