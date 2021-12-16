@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %} empleados {% endblock title %}
+
+{% block body %}
+{% include 'includes/cabezal.html' %}
+
+<!-- grid-container para que se centren los elemento -->
+<div class="grid-container">
+    <!-- Para que se puedan organizar en tablas los renglones-->
+    <div class="grid-x">
+        <div class="cell">
+            <h1>Empleados de la area buscada: </h1>
+        </div>
+
+        <!--TABLA DE DATOS: -->
+        <div class="cell">
+            <table>
+                <thead>
+                <tr>
+                    <th width="50">ID</th>
+                    <th width="150">NOMBRES</th>
+                    <th width="150">APELLIDOS</th>
+                    <th width="150">DEPARTAMENTOS</th>
+                    <th width="150">ACCION</th>
+                </tr>
+              </thead>
+                <tbody>
+              {% for empleado in datos %}
+                <tr>
+                    <td>{{empleado.id}}</td>
+                    <td>{{empleado.first_name}}</td>
+                    <td>{{empleado.last_name}}</td>
+                    <td>{{empleado.departamento}}</td>
+                    <td>
+                        <a class="button warning" href="{% url 'persona_app:persona-verDetalleEmpleado' empleado.id %}">Ver</a>
+                    </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+        </div>
+        <!-- FIN DE TABLA DE DATOS -->
+
+    </div>
+    <!-- fin del 'grid-x' -->
+</div>
+<!-- fin del grid-container -->
+
+{% endblock body %}
+
+</div>
+

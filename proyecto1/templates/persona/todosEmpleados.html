@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Empleados {% endblock title %}
+{% block body %}
+{% include 'includes/cabezal.html' %}
+
+<div class="grid-container">
+
+    <div class="grid-x" >
+        <h1 class="cell"> Empleados</h1>
+
+        <!-- Buscar empleados, como esto hace una consulta se usa
+         un form, y aparte el metodo 'get' de este mismo -->
+        <form class="cell grid-x grid-margin-x" method="get">{% csrf_token %}
+            <div class="cell large-7">
+                <!-- El contenido del input contenda informacion importante de la peticion que hace
+                el usuario, por lo cual es necesario especificarle un 'id' y 'name'-->
+                <input type="text" id="kword" name="kword" placeholder="buscar empleado">
+            </div>
+            <div class="cell large-2">
+                <!--El tipo del boton debe ser: 'submit' ya que al dar clic sobre
+                el se desea enviar una peticion al servidor -->
+                <button type="submit" class="success button">Buscar</button>
+            </div>
+
+        </form>
+         <!-- Fin de buscar empleados -->
+
+        <!--TABLA DE DATOS: -->
+        <div class="cell">
+            <table>
+                <thead>
+                <tr>
+                    <th width="50">ID</th>
+                    <th width="150">NOMBRES</th>
+                    <th width="150">APELLIDOS</th>
+                    <th width="150">DEPARTAMENTOS</th>
+                    <th width="150">ACCION</th>
+                </tr>
+              </thead>
+                <tbody>
+              {% for empleado in datos %}
+                <tr>
+                    <td>{{empleado.id}}</td>
+                    <td>{{empleado.first_name}}</td>
+                    <td>{{empleado.last_name}}</td>
+                    <td>{{empleado.departamento}}</td>
+                    <td>
+                        <a class="button warning" href="{% url 'persona_app:persona-verDetalleEmpleado' empleado.id %}">Ver</a>
+                    </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+        </div>
+        <!-- FIN DE TABLA DE DATOS -->
+
+        <!-- PAGINACION -->
+        {% if is_paginated %}
+            <div class="cell">
+                <nav aria-label="Pagination">
+                  <ul class="pagination">
+                      {% if page_obj.has_previous %}
+                        <li class="pagination-previous ">
+                            <a href="?page={{page_obj.previous_page_number}}">Anterior</a>
+                        </li>
+                      {% endif %}
+
+                      {% for pagina in paginator.page_range %}
+                        {% ifequal pagina page_obj.number %}
+                            <li class="current"><span class="show-for-sr">You're on page</span>{{pagina}}</li>
+                        {% else %}
+                            <li><a href="?page={{pagina}}">{{pagina}}</a></li>
+                        {% endifequal %}
+                      {% endfor %}
+
+                      {% if page_obj.has_next %}
+                        <li class="pagination-next ">
+                            <a href="?page={{page_obj.next_page_number}}">Siguiente</a>
+                        </li>
+                      {% endif %}
+                  </ul>
+                </nav>
+            </div>
+        {% endif %}
+        <!-- FIN DE PAGINACION-->
+    </div>
+    <!--FIN DEL 'grid-x'  -->
+
+{% endblock body %}

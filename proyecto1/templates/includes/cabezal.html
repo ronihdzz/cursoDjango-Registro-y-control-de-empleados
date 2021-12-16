@@ -1,0 +1,44 @@
+<div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
+  <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
+  <div class="title-bar-title">Menu</div>
+</div>
+
+<div class="top-bar" id="responsive-menu">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li>
+        <a style="{% if request.resolver_match.url_name == 'index' %}font-weight:bold; font-size:20px; color:#0FABD5;{% endif %}" href="{% url 'home_app:index' %}" >
+          Pagina principal
+        </a>
+      </li>
+
+      <li>
+        <a style="{% if request.resolver_match.url_name == 'persona-verTodosEmpleados' %}font-weight:bold; font-size:20px; color:#0FABD5;{% endif %}" href="{% url 'persona_app:persona-verTodosEmpleados' %}" >
+          Ver empleados
+        </a>  
+
+      <li>
+        <a style="{% if request.resolver_match.url_name == 'persona-administrarEmpleados' %}font-weight:bold; font-size:20px; color:#0FABD5;{% endif %}" href="{% url 'persona_app:persona-administrarEmpleados' %}" >
+          Administrar empleados
+        </a>        
+      </li>
+
+      <li>
+        <a style="{% if request.resolver_match.url_name == 'departamento_lista' %}font-weight:bold; font-size:20px; color:#0FABD5;{% endif %}" href="{% url 'departamento_app:departamento_lista' %}" >
+          Ver Departamentos
+        </a>  
+      </li>
+
+      <li>
+      <a style="{% if request.resolver_match.url_name == 'newDepartamento' %}font-weight:bold; font-size:20px; color:#0FABD5;{% endif %}" href="{% url 'departamento_app:newDepartamento' %}">
+        Agregar departamento
+      </a>       
+      </li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu">
+      <li><a type="button" class="button" href="{% url 'persona_app:addEmpleado' %}">Registrar a un nuevo empleado</a></li>
+    </ul>
+  </div>
+</div>

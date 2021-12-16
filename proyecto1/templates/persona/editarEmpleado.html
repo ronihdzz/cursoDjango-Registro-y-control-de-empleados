@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %} edicion {% endblock title%}
+{% block body %}
+{% include 'includes/cabezal.html' %}
+<div class="grid-container">
+    <div class="grid-x">
+        <div class="cell"> <h1>Edicion de datos</h1> </div>
+        <div class="cell">
+        <!--FORMULARIO DE DATOS DEL EMPLEADO-->
+        <form method="post" class="grid-x grid-margin-x"  enctype="multipart/form-data">{% csrf_token %}
+            <div class="cell large-6">
+                <label> Nombre: {{form.first_name}}</label>
+            </div>
+            <div class="cell large-6">
+                <label> Apellido: {{form.last_name}}</label>
+            </div>
+            <div class="cell large-6">
+                <label> Trabajo: {{form.job}}</label>
+            </div>
+            <div class="cell large-6">
+                <label> Departamento: {{form.departamento}}</label>
+            </div>
+            <div class="cell large-6">
+                <label> Habilidades: {{form.habilidades}}</label>
+            </div>
+            <div class="cell large-">
+                <label> Imagen: {{form.avatar}}</label>
+            </div>
+            <div class="cell">
+                <button type="submit" class="success button">Guardar cambios</button>
+            </div>
+        </form>
+        <!--FIN DEL FORMULARIO DE DATOS DEL EMPLEADO-->
+        </div>
+    </div>
+</div>
+{% endblock body %}

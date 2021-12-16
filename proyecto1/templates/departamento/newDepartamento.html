@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %} creando departamento {% endblock title %}
+{% block body %}
+{% include 'includes/cabezal.html' %}
+<div class="grid-container">
+    <div class="grid-x">
+        <form method="post"  enctype="multipart/form-data" >{% csrf_token %}
+            <h2 class="cell" >Datos de departamento</h2>
+            <div class="callout">
+                <label class="cell"> Departamento:{{form.departamento}} </label>
+                <label class="cell" >  Abreviatura:{{form.shorname}} </label>
+            </div>
+            <h2 class="cell"> Administrador del departamento </h2>
+            <div class="callout">
+                <label class="cell" >  Nombre:{{form.nombre}} </label>
+                <label class="cell" > Apellidos:{{form.apellidos}} </label>
+                <label class="cell" > Habilidades:{{form.habilidades}} </label>
+                <label class="cell" > Avatar:{{form.avatar}} </label>
+            </div>
+            <button class="success button" type="submit">Agregar</button>
+        </form>
+    </div>
+</div>
+{% endblock body %}
+

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %} departamentos {% endblock title%}
+{% block body %}
+{% include 'includes/cabezal.html' %}
+<h1></h1>
+<div class="grid-container">
+    <div class="cell">
+        <h1>Lista de Departamentos</h1>
+    </div>
+    <div class="cell">
+        <table>
+            <tbody>
+            {% for departamento in datos%}
+            <tr>
+                <td> {{departamento.name}} </td>
+                <td> {{departamento.shor_name}}</td>
+                <td>
+                    <a class="button warning"
+                       href="{% url 'persona_app:empleadosPorArea' departamento.shor_name %}"
+                    > Ver empleados</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock body %}

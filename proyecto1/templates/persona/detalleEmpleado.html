@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} edicion {% endblock title%}
+{% block body %}
+{% include 'includes/cabezal.html' %}
+<div class="grid-container">
+    <div class="grid-x align-center">
+        <div class="cell large-4 card" style="width: 300px;">
+            <div class="card-divider">
+                {{object.get_job_display}}
+            </div>
+            {% if object.avatar %}
+                <img src="{{object.avatar.url}}">
+            {% else %}
+                <img src="{% static 'img/sinImagen.jpg' %}">
+            {% endif %}
+            <div class="card-section">
+                <h4>{{object.first_name}} {{object.last_name}}</h4>
+                <p>{{object.departamento.shor_name}}</p>
+                <p><span class="label">Habilidades: </span></p>
+                <ul class="vertical menu" >
+                    {% for h in object.habilidades.all %}
+                        <li> {{h.habilidad}} </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
